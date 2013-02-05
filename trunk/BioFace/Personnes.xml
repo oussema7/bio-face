@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ListePersonnes>
+  <Personne>
+    <Nom>
+      Dupont
+    </Nom>
+    <Prenom>
+      Bob
+    </Prenom>
+    <ImageReference>
+      BobDupont.jpg
+    </ImageReference>
+  </Personne>
+  <Personne>
+    <Nom>
+      Mercier
+    </Nom>
+    <Prenom>
+      Jean-Francois
+    </Prenom>
+    <ImageReference>
+      MercierJean-Francois.jpg
+    </ImageReference>
+  </Personne>
+</ListePersonnes>
+

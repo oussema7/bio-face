@@ -16,6 +16,9 @@
     <Filter Include="Data">
       <UniqueIdentifier>{11f15ad5-022a-43e3-84ba-acc446d4944d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data\Img">
+      <UniqueIdentifier>{d0f67978-1cd8-4e7a-b9ea-c5f0a56a1659}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -37,7 +40,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Xsd Include="Personnes.xsd">
+    <Xsd Include="Personnes.xml">
       <Filter>Data</Filter>
     </Xsd>
   </ItemGroup>
