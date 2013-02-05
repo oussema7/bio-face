@@ -1,7 +1,4 @@
-// BioFace.cpp : définit le point d'entrée pour l'application console.
-//
 
-#include "stdafx.h"
 #include "opencv2/highgui/highgui.hpp"
 #include <string.h>
 #include "opencv2/opencv.hpp"
@@ -43,7 +40,7 @@ int main( int argc, const char** argv ){
 		// create a window to display detected faces
 		cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
 		// display face detections
-		faceRectSeq = cvHaarDetectObjects(frame,cascade,storage,1.2, 3,CV_HAAR_DO_CANNY_PRUNING,cvSize(50,50));
+		faceRectSeq = cvHaarDetectObjects(frame,cascade,storage);
 		for ( int i = 0; i < (faceRectSeq? faceRectSeq->total:0); i++ )
 		{
 			CvRect *r = (CvRect*)cvGetSeqElem(faceRectSeq,i);
