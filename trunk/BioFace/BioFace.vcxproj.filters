@@ -37,7 +37,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Xsd Include="XMLSchema.xsd">
+    <Xsd Include="Personnes.xsd">
       <Filter>Data</Filter>
     </Xsd>
   </ItemGroup>
