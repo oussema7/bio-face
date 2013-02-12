@@ -7,9 +7,19 @@
     <Prenom>
       Bob
     </Prenom>
-    <ImageReference>
-      BobDupont.jpg
-    </ImageReference>
+    <Id>
+      1
+    </Id>
+    <ImagesReference>
+      <Image>
+        <Chemin>
+          BobDupont.jpg
+        </Chemin>
+        <Date>
+          DD/MM/YYYY HH:MM:SS
+        </Date>
+      </Image>
+    </ImagesReference>
   </Personne>
   <Personne>
     <Nom>
@@ -18,9 +28,19 @@
     <Prenom>
       Jean-Francois
     </Prenom>
-    <ImageReference>
-      MercierJean-Francois.jpg
-    </ImageReference>
+    <Id>
+      2
+    </Id>
+    <ImagesReference>
+      <Image>
+        <Chemin>
+          MercierJean-Francois.jpg
+        </Chemin>
+        <Date>
+          DD/MM/YYYY HH:MM:SS
+        </Date>
+      </Image>
+    </ImagesReference>
   </Personne>
 </ListePersonnes>
 
