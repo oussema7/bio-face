@@ -7,10 +7,15 @@
 #include "opencv2/opencv.hpp"
 #include <stdio.h>
 #include <sys/stat.h>
-
-
+#include <iostream>
+#include "Parser.h"
 
 int main( int argc, const char** argv ){
+
+	char* xmlFile = "Personnes.xml";
+	Parser parser= Parser();
+	parser.Parse(xmlFile);
+
 
 	CvCapture* capture;
 	IplImage* frame = 0;
