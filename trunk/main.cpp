@@ -5,16 +5,13 @@
 #include <stdio.h>
 #include <sys/stat.h>
 
+
 using namespace std;
 using namespace cv;
 
+
 int main()
 {
-    //char* xmlFile = "Personnes.xml";
-	//Parser parser= Parser();
-	//parser.Parse(xmlFile);
-
-
 	CvCapture* capture;
 	IplImage* frame = 0;
 	char s[] = "picture.jpg";
@@ -37,11 +34,12 @@ int main()
 	}
 
 
-	capture = cvCaptureFromAVI("Test.avi");
+	capture = cvCaptureFromCAM(0);
+
 	while (true)
 	{
 		//Read the video stream
-		//capture = cvCaptureFromCAM(1);
+		//capture = cvCaptureFromCAM(0);
 		frame = cvQueryFrame( capture );
 		// create a window to display detected faces
 		cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
