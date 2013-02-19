@@ -62,6 +62,7 @@ int main()
 
 			//Récupération de l'image à l'interieur du rectangle r
         cvSetImageROI(frame, *r);
+
         //Copie l'image dans le dossier Img avec le nom picture+NbFrame+.jpg
         IplImage *subImg = cvCreateImage(cvGetSize(frame), frame->depth, frame->nChannels);
         cvCopy(frame, subImg, NULL);
@@ -77,10 +78,7 @@ int main()
         cvResetImageROI(frame);
         cvShowImage("Sample Program", frame);
 
-
 		}
-
-
 		int c = cvWaitKey(10);
 		if( (char)c == 27 )
 		{
