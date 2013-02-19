@@ -1,6 +1,9 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
+#include <string>
+
+using namespace std;
 
 class Image
 {

@@ -12,7 +12,7 @@ Parser::Parser()
     if(!doc.LoadFile()){
         cerr << "erreur lors du chargement" << endl;
         cerr << "error #" << doc.ErrorId() << " : " << doc.ErrorDesc() << endl;
-        return 1;
+
     }
 }
 

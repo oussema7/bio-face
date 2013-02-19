@@ -1,13 +1,19 @@
 #ifndef PERSONNE_H
 #define PERSONNE_H
 
+#include <iostream>
+#include <string>
+#include <list>
+#include "Image.h"
+
+using namespace std;
 
 class Personne
 {
     public:
         string name, lastname;
         int id;
-        list<image> imageReferences;
+        list<Image> imageReferences;
         Personne();
         virtual ~Personne();
     protected:
