@@ -1,7 +1,8 @@
 #include "Parser.h"
 #include <iostream>
-#include "include/tinyxml.h"
-#include "include/tinystr.h"
+#include <string.h>
+#include "tinyxml.h"
+#include "tinystr.h"
 
 using namespace std;
 
