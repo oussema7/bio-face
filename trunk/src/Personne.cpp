@@ -1,8 +1,15 @@
 #include "Personne.h"
 
-Personne::Personne()
+Personne::Personne(string name,string lastname,int id,list<Image> imageReferences)
 {
-    //ctor
+    this->name=name;
+    this->lastname=lastname;
+    this->id=id;
+    this->imageReferences=imageReferences;
+}
+
+void Personne::addImage(Image img){
+    imageReferences.push_back(img);
 }
 
 Personne::~Personne()

@@ -14,8 +14,11 @@ class Personne
         string name, lastname;
         int id;
         list<Image> imageReferences;
-        Personne();
+
+        Personne(string name,string lastname,int id,list<Image> imageReferences);
         virtual ~Personne();
+
+        void addImage(Image img);
     protected:
     private:
 };

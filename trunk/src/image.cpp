@@ -1,8 +1,9 @@
 #include "Image.h"
 
-Image::Image()
+Image::Image(string chemin,string date)
 {
-    //ctor
+    this->chemin=chemin;
+    this->date=date;
 }
 
 Image::~Image()

@@ -9,7 +9,8 @@ class Image
 {
     public:
         string chemin,date;
-        Image();
+
+        Image(string chemin,string date);
         virtual ~Image();
     protected:
     private:
