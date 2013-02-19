@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1360919690 source:c:\users\el_bla\ricm5\biometrie\bioface\main.cpp
-	<iostream>
-	"opencv2/highgui/highgui.hpp"
-	<string.h>
-	"opencv2/opencv.hpp"
-	<stdio.h>
-	<sys/stat.h>
-
