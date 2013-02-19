@@ -37,11 +37,11 @@ int main()
 	}
 
 
-	capture = cvCaptureFromAVI("Test.avi");
+	//capture = cvCaptureFromAVI("Test.avi");
 	while (true)
 	{
 		//Read the video stream
-		//capture = cvCaptureFromCAM(0);
+		capture = cvCaptureFromCAM(0);
 		frame = cvQueryFrame( capture );
 		// create a window to display detected faces
 		cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
