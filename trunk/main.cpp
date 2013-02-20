@@ -4,16 +4,72 @@
 #include "opencv2/opencv.hpp"
 #include <stdio.h>
 #include <sys/stat.h>
+#include <windows.h>
 
 using namespace std;
 using namespace cv;
 
-int main()
+const char g_szClassName[] = "mainWindowClass";
+
+//The Window Procedure
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    switch(msg)
+    {
+        case WM_CLOSE:
+            DestroyWindow(hwnd);
+        break;
+        case WM_DESTROY:
+            PostQuitMessage(0);
+        break;
+        default:
+            return DefWindowProc(hwnd, msg, wParam, lParam);
+    }
+    return 0;
+}
+
+//Main
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+    WNDCLASSEX wc;
+    HWND hwnd;
+    MSG Msg;
+
+    //Step 1: Registering the Window Class
+    wc.cbSize        = sizeof(WNDCLASSEX);
+    wc.style         = 0;
+    wc.lpfnWndProc   = WndProc;
+    wc.cbClsExtra    = 0;
+    wc.cbWndExtra    = 0;
+    wc.hInstance     = hInstance;
+    wc.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
+    wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
+    wc.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
+    wc.lpszMenuName  = NULL;
+    wc.lpszClassName = g_szClassName;
+    wc.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
+    RegisterClassEx(&wc);
+
+
+    //Creating the Window
+    hwnd = CreateWindowEx(
+        WS_EX_CLIENTEDGE,
+        g_szClassName,
+        "Bio-Face",
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, 600, 400,
+        NULL, NULL, hInstance, NULL);
+    ShowWindow(hwnd, nCmdShow);
+    UpdateWindow(hwnd);
+
+    // Step 3: The Message Loop
+    while(GetMessage(&Msg, NULL, 0, 0) > 0)
+    {
+        TranslateMessage(&Msg);
+        DispatchMessage(&Msg);
     //char* xmlFile = "Personnes.xml";
 	//Parser parser= Parser();
 	//parser.Parse(xmlFile);
-
 
 	CvCapture* capture;
 	IplImage* frame = 0;
@@ -38,11 +94,11 @@ int main()
 	}
 
     //Read the video stream
-	//capture = cvCaptureFromAVI("Test.avi");
+	capture = cvCaptureFromAVI("Test.avi");
 
 	while (true)
 	{
-		capture = cvCaptureFromCAM(1);
+		//capture = cvCaptureFromCAM(1);
 		frame = cvQueryFrame( capture );
 		// create a window to display detected faces
 		cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
@@ -87,9 +143,8 @@ int main()
 		}
 		nbFrame++;
 	}
-
-
 	// clean up and release resources
 	cvReleaseImage(&frame);
-	return 0;
+    }
+	return Msg.wParam;
 }
