@@ -6,6 +6,8 @@
 #include <sys/stat.h>
 #include <windows.h>
 
+#include "Parser.h"
+
 using namespace std;
 using namespace cv;
 
@@ -31,9 +33,21 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 //Main
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+    // ----------------------------------------------------------- //
+    // -------------------------- Parse -------------------------- //
+    // ----------------------------------------------------------- //
+    const char* xmlFile = "data/Personnes.xml";
+	Parser parser= Parser();
+	Collection collection;
+    if(parser.Parse(collection,xmlFile))
+        cout << collection.to_string();
+    else
+        cout << "Erreur dans le parse du fichier" << endl;
+
     WNDCLASSEX wc;
     HWND hwnd;
     MSG Msg;
+    // ----------------------------------------------------------- //
 
     //Step 1: Registering the Window Class
     wc.cbSize        = sizeof(WNDCLASSEX);
@@ -67,9 +81,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     {
         TranslateMessage(&Msg);
         DispatchMessage(&Msg);
-    //char* xmlFile = "Personnes.xml";
-	//Parser parser= Parser();
-	//parser.Parse(xmlFile);
 
 	CvCapture* capture;
 	IplImage* frame = 0;

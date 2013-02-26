@@ -1,6 +1,7 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include "Collection.h"
 
 class Parser
 {
@@ -8,7 +9,7 @@ class Parser
         Parser();
         virtual ~Parser();
 
-        void Parse(char* xmlFile);
+        bool Parse(Collection& collection,const char* xmlFile) const;
     protected:
     private:
 };

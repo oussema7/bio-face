@@ -1,12 +1,14 @@
 #include "Image.h"
 
-Image::Image(string chemin,string date)
-{
+Image::Image(){
+
+}
+
+Image::Image(const string& chemin,const string& date){
     this->chemin=chemin;
     this->date=date;
 }
 
-Image::~Image()
-{
+Image::~Image(){
     //dtor
 }
