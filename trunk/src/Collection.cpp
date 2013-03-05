@@ -1,4 +1,6 @@
 #include "Collection.h"
+#include <time.h>
+#include <sstream>
 
 Collection::Collection(const char* xmlFile){
     parser = Parser(xmlFile);
@@ -32,9 +34,43 @@ void Collection::addPersonne(const string& firstName,const string& lastName){
     parser.addPersonne(firstName,lastName,id);
 }
 
-void Collection::addImage(int personneId,const string& chemin,
-                          const string& date){
+void Collection::addImage(int personneId,const string& chemin){
+    std::ostringstream oss;
+    string date;
     Image img(chemin,date);
+
+    struct tm Today;
+    time_t maintenant;
+
+    time(&maintenant);
+    Today = *localtime(&maintenant);
+
+
+    oss << Today.tm_mday;
+    date = oss.str() + "/";
+    oss.str("");
+
+    oss << Today.tm_mon+1;
+    date=date + oss.str() + "/";
+    oss.str("");
+
+    oss << Today.tm_year+1900;
+    date=date + oss.str() + " ";
+    oss.str("");
+
+    oss << Today.tm_hour;
+    date=date + oss.str() + ":";
+    oss.str("");
+
+    oss << Today.tm_min;
+    date=date + oss.str() + ":";
+    oss.str("");
+
+    oss << Today.tm_sec;
+    date=date + oss.str();
+    oss.str("");
+
+    cout << date << endl;
 
     list<Personne>::iterator it=personnes.begin();
     while(it!=personnes.end() && it->getId()!=personneId){
