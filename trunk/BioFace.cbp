@@ -32,12 +32,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Collection.h" />
 		<Unit filename="include/Parser.h" />
 		<Unit filename="include/Personne.h" />
 		<Unit filename="include/image.h" />
 		<Unit filename="include/tinystr.h" />
 		<Unit filename="include/tinyxml.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Collection.cpp" />
 		<Unit filename="src/Parser.cpp" />
 		<Unit filename="src/Personne.cpp" />
 		<Unit filename="src/image.cpp" />

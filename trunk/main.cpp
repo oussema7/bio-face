@@ -101,11 +101,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
     //Read the video stream
-	capture = cvCaptureFromAVI("Test.avi");
+	//capture = cvCaptureFromAVI("Test.avi");
 
 	while (true)
 	{
-		//capture = cvCaptureFromCAM(1);
+		capture = cvCaptureFromCAM(1);
 		frame = cvQueryFrame( capture );
 		// create a window to display detected faces
 		cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
@@ -124,22 +124,119 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			cvRectangle(frame,p1,p2,CV_RGB(0,255,0),1,4,0);
 
 			//Récupération de l'image à l'interieur du rectangle r
-        cvSetImageROI(frame, *r);
+            cvSetImageROI(frame, *r);
 
-        //Copie l'image dans le dossier Img avec le nom picture+NbFrame+.jpg
-        IplImage *subImg = cvCreateImage(cvGetSize(frame), frame->depth, frame->nChannels);
-        cvCopy(frame, subImg, NULL);
-        string Result;
-        char* str_Result[100];
-        ostringstream convert;
-        convert << nbFrame;
-        Result = "Img\\picture"+convert.str()+".jpg";
+            //Copie l'image dans le dossier Img avec le nom picture+NbFrame+.jpg
+            IplImage *subImg = cvCreateImage(cvGetSize(frame), frame->depth, frame->nChannels);
+            cvCopy(frame, subImg, NULL);
+            string Result;
+            char* str_Result[100];
+            ostringstream convert;
+            convert << nbFrame;
+            Result = "Img\\picture"+convert.str()+".jpg";
 
-        //Affiche l'image dans le rectangle et l'image dans son intégralité
-        cvSaveImage(Result.c_str(), subImg);
-        cvShowImage("Visage", subImg);
-        cvResetImageROI(frame);
-        cvShowImage("Sample Program", frame);
+            //Affiche l'image dans le rectangle et l'image dans son intégralité
+            //cvSaveImage(Result.c_str(), subImg);
+            cvShowImage("Visage", subImg);
+            cvResetImageROI(frame);
+            cvShowImage("Sample Program", frame);
+
+
+            IplImage* src0 = cvLoadImage( "Img/picture1.jpg" );
+            IplImage* src1 = cvLoadImage( "Img/picture2.jpg" );
+            IplImage* src2 = cvLoadImage( "Img/picture3.jpg" );
+            IplImage* src3 = cvLoadImage( "Img/picture30.jpg" );
+            IplImage* src4 = cvLoadImage( "Img/picture31.jpg" );
+            IplImage* src5 = cvLoadImage( "Img/picture32.jpg" );
+            IplImage* src6 = cvLoadImage( "Img/picture100.jpg" );
+            IplImage* src7 = cvLoadImage( "Img/picture101.jpg" );
+            IplImage* src8 = cvLoadImage( "Img/picture102.jpg" );
+
+            IplImage *dst = cvCreateImage(cvSize(400 , 400 ),src0->depth,3);
+            IplImage *dst1 = cvCreateImage(cvSize(400 , 400 ),src1->depth,3);
+            IplImage *dst2 = cvCreateImage(cvSize(400 , 400),src2->depth,3);
+            IplImage *dst3 = cvCreateImage(cvSize(400 , 400 ),src3->depth,3);
+            IplImage *dst4 = cvCreateImage(cvSize(400 , 400),src4->depth,3);
+            IplImage *dst5 = cvCreateImage(cvSize(400 , 400),src5->depth,3);
+            IplImage *dstTest = cvCreateImage(cvSize(400 , 400),subImg->depth,3);
+            IplImage *dst6 = cvCreateImage(cvSize(400 , 400 ),src6->depth,3);
+            IplImage *dst7 = cvCreateImage(cvSize(400 , 400),src7->depth,3);
+            IplImage *dst8 = cvCreateImage(cvSize(400 , 400),src8->depth,3);
+
+
+
+
+            //train
+
+            // holds images and labels
+            vector<Mat> images;
+            vector<int> labels;
+
+            //resize picture
+
+            cvResize(src0,dst, CV_INTER_LINEAR );
+            cvResize(src1,dst1, CV_INTER_LINEAR );
+            cvResize(src2,dst2, CV_INTER_LINEAR );
+            cvResize(src3,dst3, CV_INTER_LINEAR );
+            cvResize(src4,dst4, CV_INTER_LINEAR );
+            cvResize(src5,dst5, CV_INTER_LINEAR );
+            cvResize(subImg,dstTest, CV_INTER_LINEAR );
+            cvResize(src6,dst6, CV_INTER_LINEAR );
+            cvResize(src7,dst7, CV_INTER_LINEAR );
+            cvResize(src8,dst8, CV_INTER_LINEAR );
+
+
+            cvSaveImage( "resize\\picture1.jpg", dst );
+            cvSaveImage( "resize\\picture2.jpg", dst1 );
+            cvSaveImage( "resize\\picture3.jpg", dst2 );
+            cvSaveImage( "resize\\picture30.jpg", dst3 );
+            cvSaveImage( "resize\\picture31.jpg", dst4 );
+            cvSaveImage( "resize\\picture32.jpg", dst5 );
+            cvSaveImage( "resize\\pictureTest.jpg", dstTest );
+            cvSaveImage( "resize\\picture100.jpg", dst6 );
+            cvSaveImage( "resize\\picture101.jpg", dst7 );
+            cvSaveImage( "resize\\picture102.jpg", dst8 );
+
+
+            // images for first person
+            images.push_back(imread("resize/picture1.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(0);
+            images.push_back(imread("resize/picture2.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(0);
+            images.push_back(imread("resize/picture3.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(0);
+            // images for second person
+            images.push_back(imread("resize/picture30.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(1);
+            images.push_back(imread("resize/picture31.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(1);
+            images.push_back(imread("resize/picture32.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(1);
+
+            images.push_back(imread("resize/picture100.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(2);
+            images.push_back(imread("resize/picture101.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(2);
+            images.push_back(imread("resize/picture102.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(2);
+
+
+
+
+            Ptr<FaceRecognizer> model =  createFisherFaceRecognizer();
+            model->train(images, labels);
+
+            Mat img = imread("resize/pictureTest.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+            // And get a prediction from the cv::FaceRecognizer:
+            int predicted = 7;
+            cout<<predicted<<endl;
+            predicted = model->predict(img);
+
+            cout<<predicted<<endl;
+
+            if (predicted==0){
+                cout<<"camille"<<endl;
+            }
+            else if (predicted==1){
+                cout<<"Marie"<<endl;
+            }
+             else if (predicted==2){
+                cout<<"Christopher"<<endl;
+            }
+            else{
+                cout<<"Personne inconnue"<<endl;
+            }
 
 		}
 		int c = cvWaitKey(10);
