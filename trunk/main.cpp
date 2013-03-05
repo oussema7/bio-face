@@ -6,7 +6,7 @@
 #include <sys/stat.h>
 #include <windows.h>
 
-#include "Parser.h"
+#include "Collection.h"
 
 using namespace std;
 using namespace cv;
@@ -37,12 +37,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     // -------------------------- Parse -------------------------- //
     // ----------------------------------------------------------- //
     const char* xmlFile = "data/Personnes.xml";
-	Parser parser= Parser();
-	Collection collection;
-    if(parser.Parse(collection,xmlFile))
-        cout << collection.to_string();
-    else
-        cout << "Erreur dans le parse du fichier" << endl;
+    Collection collection(xmlFile);
+
 
     WNDCLASSEX wc;
     HWND hwnd;
