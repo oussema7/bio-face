@@ -14,7 +14,8 @@ class Collection
         virtual ~Collection();
 
         //Getters and setters
-        inline const list<Personne>& getPersonnes() const {return personnes;};
+        inline list<Personne>& getPersonnes() {return personnes;};
+        Personne& getPersonne(int id);
         inline void setPersonnes(const list<Personne>& personnes){
             this->personnes=personnes;
         }
@@ -23,7 +24,7 @@ class Collection
         void addPersonne(const Personne& p);
 
         //Overrided
-        string to_string() const;
+        string to_string();
 
     protected:
     private:
