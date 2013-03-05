@@ -4,27 +4,27 @@
 #include <string>
 #include <sstream>
 #include <cstdlib>
-#include "tinyxml.h"
-#include "tinystr.h"
 
 using namespace std;
 
 Parser::Parser(){
+}
 
+Parser::Parser(const char* xmlFile){
+    this->xmlFile = xmlFile;
 }
 
 Parser::~Parser(){
     //dtor
 }
 
-bool Parser::Parse(Collection& collection,const char* xmlFile) const{
-    TiXmlDocument doc(xmlFile);
+bool Parser::parse(list<Personne>& personnes){
+    doc = TiXmlDocument(xmlFile);
+
     TiXmlElement *elem1,*elem2,*elem3;
 
-    list<Personne> personnes;
     Personne personne;
     Image image;
-
 
     if(!doc.LoadFile()){
         cerr << "erreur lors du chargement" << endl;
@@ -37,7 +37,6 @@ bool Parser::Parse(Collection& collection,const char* xmlFile) const{
     //Node ListePersonne
     elem1 = hdl.FirstChildElement("ListePersonnes").Element();
     if(!elem1) return false;
-    collection = Collection();
 
     //Nodes Personne
     elem1=elem1->FirstChildElement("Personne");
@@ -78,13 +77,23 @@ bool Parser::Parse(Collection& collection,const char* xmlFile) const{
             elem2=elem2->NextSiblingElement("Image");
         }
 
-        collection.addPersonne(personne);
+        personnes.push_back(personne);
         elem1=elem1->NextSiblingElement("Personne");
     }
 
     personne = Personne();
 
-
-
     return true;
+}
+
+void Parser::exportFile() const{
+    doc.SaveFile(xmlFile);
+}
+
+void Parser::addPersonne(const string& firstName,const string& lastName,int id){
+    //A implementer
+}
+
+void Parser::addImage(int personneId,const string& chemin,const string& date){
+    //A implementer
 }

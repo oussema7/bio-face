@@ -7,6 +7,13 @@ Personne::Personne(){
 }
 
 Personne::Personne(const string& firstName,const string& lastName,
+                   int id){
+    this->firstName=firstName;
+    this->lastName=lastName;
+    this->id=id;
+}
+
+Personne::Personne(const string& firstName,const string& lastName,
                    int id,const list<Image>& imageReferences){
     this->firstName=firstName;
     this->lastName=lastName;

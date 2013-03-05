@@ -1,17 +1,30 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "Collection.h"
+#include "tinyxml.h"
+#include "tinystr.h"
+#include "Personne.h"
 
 class Parser
 {
     public:
         Parser();
+        Parser(const char* xmlFile);
         virtual ~Parser();
 
-        bool Parse(Collection& collection,const char* xmlFile) const;
+        //Fonctions d'import/export
+        bool parse(list<Personne>& personnnes);
+        void exportFile() const;
+
+        //Fonctions de modif des données
+        void addPersonne(const string& firstName,const string& lastName,
+                 int id);
+        void addImage(int personneId,const string& chemin,
+                          const string& date);
     protected:
     private:
+        const char* xmlFile;
+        TiXmlDocument doc;
 };
 
 #endif // PARSER_H

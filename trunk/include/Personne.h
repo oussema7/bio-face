@@ -14,6 +14,8 @@ class Personne
         //Constructors and destructors
         Personne();
         Personne(const string& firstName,const string& lastName,
+                 int id);
+        Personne(const string& firstName,const string& lastName,
                  int id,const list<Image>& imageReferences);
         virtual ~Personne();
 
