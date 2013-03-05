@@ -8,7 +8,7 @@
             Bob
         </Prenom>
         <Id>
-            1
+            0
         </Id>
         <Image>
             <Chemin>
@@ -27,7 +27,7 @@
             Jean-Francois
         </Prenom>
         <Id>
-        2
+        1
         </Id>
         <Image>
             <Chemin>

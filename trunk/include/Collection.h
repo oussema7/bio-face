@@ -23,8 +23,7 @@ class Collection
         }
 
         //Methods
-        void addPersonne(const string& firstName,const string& lastName,
-                 int id);
+        void addPersonne(const string& firstName,const string& lastName);
         void addImage(int personneId,const string& chemin,
                           const string& date);
 

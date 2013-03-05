@@ -25,8 +25,8 @@ const Personne& Collection::getPersonne(int id) const{
     return (*it);
 }
 
-void Collection::addPersonne(const string& firstName,const string& lastName,
-                 int id){
+void Collection::addPersonne(const string& firstName,const string& lastName){
+    int id = personnes.size();
     Personne p(firstName,lastName,id);
     personnes.push_back(p);
     parser.addPersonne(firstName,lastName,id);
