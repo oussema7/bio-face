@@ -14,7 +14,7 @@ using namespace cv;
 const char g_szClassName[] = "mainWindowClass";
 
 //mode = 0 : training, mode = 1 : recognition
-const int mode = 1;
+const int mode = 0;
 
 
 //A MODIFIER : faire enregistrement dans base de données
@@ -345,6 +345,3 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     }
 	return Msg.wParam;
 }
-
-
-
