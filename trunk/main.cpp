@@ -176,7 +176,7 @@ void recognition(IplImage* frame, CvHaarClassifierCascade* cascade)
 
     while (true)
     {
-        capture = cvCaptureFromCAM(1);
+        capture = cvCaptureFromCAM(0);
         frame = cvQueryFrame(capture);
         // create a window to display detected faces
         cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
@@ -270,9 +270,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     const char* xmlFile = "data/Personnes.xml";
     Collection collection(xmlFile);
 
-    //collection.addPersonne("toto","tata");
-    //collection.addImage(6,"test");
-    //cout<<collection.to_string();
+    collection.addPersonne("toto","tata");
+    collection.addImage(6,"test");
+    cout<<collection.to_string();
 
 
     WNDCLASSEX wc;

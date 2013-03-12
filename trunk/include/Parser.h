@@ -1,6 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <vector>
+
 #include "tinyxml.h"
 #include "tinystr.h"
 #include "Personne.h"
@@ -13,7 +15,7 @@ class Parser
         virtual ~Parser();
 
         //Fonctions d'import/export
-        bool parse(list<Personne>& personnnes);
+        bool parse(vector<Personne>& personnnes);
         void exportFile() const;
 
         //Fonctions de modif des données

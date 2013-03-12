@@ -1,7 +1,7 @@
 #ifndef COLLECTION_H
 #define COLLECTION_H
 
-#include <list>
+#include <vector>
 #include "Personne.h"
 #include "Parser.h"
 
@@ -15,10 +15,10 @@ class Collection
         virtual ~Collection();
 
         //Getters and setters
-        inline const list<Personne>& getPersonnes() const {return personnes;};
+        inline const vector<Personne>& getPersonnes() const {return personnes;};
         const Personne& getPersonne(int id) const;
 
-        inline void setPersonnes(const list<Personne>& personnes){
+        inline void setPersonnes(const vector<Personne>& personnes){
             this->personnes=personnes;
         }
 
@@ -34,7 +34,7 @@ class Collection
 
     private:
         Parser parser;
-        list<Personne> personnes;
+        vector<Personne> personnes;
 };
 
 #endif // COLLECTION_H

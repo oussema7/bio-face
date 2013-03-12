@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <list>
+#include <vector>
 #include "Image.h"
 
 using namespace std;
@@ -16,7 +16,7 @@ class Personne
         Personne(const string& firstName,const string& lastName,
                  int id);
         Personne(const string& firstName,const string& lastName,
-                 int id,const list<Image>& imageReferences);
+                 int id,const vector<Image>& imageReferences);
         virtual ~Personne();
 
         //Getters and setters
@@ -33,10 +33,10 @@ class Personne
         inline int getId() const {return id;};
         inline void setId(int id){this->id=id;};
 
-        inline const list<Image>& getImageReferences() const {
+        inline const vector<Image>& getImageReferences() const {
             return imageReferences;
         };
-        inline void setImageReferences(const list<Image>& imageReferences){
+        inline void setImageReferences(const vector<Image>& imageReferences){
             this->imageReferences=imageReferences;
         };
 
@@ -51,7 +51,7 @@ class Personne
     private:
         string firstName, lastName;
         int id;
-        list<Image> imageReferences;
+        vector<Image> imageReferences;
 };
 
 #endif // PERSONNE_H

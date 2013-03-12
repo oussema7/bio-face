@@ -21,7 +21,7 @@ Parser::~Parser()
     //dtor
 }
 
-bool Parser::parse(list<Personne>& personnes)
+bool Parser::parse(vector<Personne>& personnes)
 {
     doc = TiXmlDocument(xmlFile);
 

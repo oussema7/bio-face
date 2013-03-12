@@ -17,7 +17,7 @@ Collection::~Collection(){
 }
 
 const Personne& Collection::getPersonne(int id) const{
-    list<Personne>::const_iterator it=getPersonnes().begin();
+    vector<Personne>::const_iterator it=getPersonnes().begin();
     while(it!=getPersonnes().end() && it->getId()!=id){
         it++;
     }
@@ -72,7 +72,7 @@ void Collection::addImage(int personneId,const string& chemin){
 
     cout << date << endl;
 
-    list<Personne>::iterator it=personnes.begin();
+    vector<Personne>::iterator it=personnes.begin();
     while(it!=personnes.end() && it->getId()!=personneId){
         it++;
     }
@@ -93,7 +93,7 @@ string Collection::to_string() const{
 
     string res = "[Collection]\n";
 
-    list<Personne>::const_iterator it;
+    vector<Personne>::const_iterator it;
     for(it=getPersonnes().begin(); it!=getPersonnes().end();it++){
         res=res+it->to_string()+"\n";
     }

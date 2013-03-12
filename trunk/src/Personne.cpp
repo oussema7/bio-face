@@ -14,7 +14,7 @@ Personne::Personne(const string& firstName,const string& lastName,
 }
 
 Personne::Personne(const string& firstName,const string& lastName,
-                   int id,const list<Image>& imageReferences){
+                   int id,const vector<Image>& imageReferences){
     this->firstName=firstName;
     this->lastName=lastName;
     this->id=id;
