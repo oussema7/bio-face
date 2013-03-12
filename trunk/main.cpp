@@ -14,7 +14,10 @@ using namespace cv;
 const char g_szClassName[] = "mainWindowClass";
 
 //mode = 0 : training, mode = 1 : recognition
-const int mode = 0;
+const int mode = 1;
+
+const char* xmlFile = "data/Personnes.xml";
+Collection collection(xmlFile);
 
 
 //A MODIFIER : faire enregistrement dans base de données
@@ -103,10 +106,33 @@ void training(IplImage* frame, CvHaarClassifierCascade* cascade)
 
 Ptr<FaceRecognizer> creerModele()
 {
+    // holds images and labels
+    vector<Mat> images;
+    vector<int> labels;
+
+      // ----------------------------------------------------------- //
+    // -------------------------- Parse -------------------------- //
+    // ----------------------------------------------------------- //
+
+   vector<Personne> personnes = collection.getPersonnes();
+    vector<Image> imageRefs;
+
+    Personne personne;
+    for(int i=0;i<personnes.size();i++){
+        personne = personnes[i];
+        imageRefs = personne.getImageReferences();
+        for(int j=0;j<imageRefs.size();j++){
+            IplImage* src = cvLoadImage(imageRefs[j].getChemin().c_str(), CV_LOAD_IMAGE_GRAYSCALE);
+            Mat matDst=src;
+            images.push_back(matDst); labels.push_back(personne.getId());
+        }
+    }
+
+
     //cerr<<"creation du modele"<<endl;
     //A MODIFIER => chargement depuis base de données
     //Chargement des images depuis le dossier imgResizedGray
-    IplImage* src0 = cvLoadImage( "imgResizedGray/picture0.jpg" );
+    /*IplImage* src0 = cvLoadImage( "imgResizedGray/picture0.jpg" );
     IplImage* src1 = cvLoadImage( "imgResizedGray/picture1.jpg" );
     IplImage* src2 = cvLoadImage( "imgResizedGray/picture2.jpg" );
 
@@ -131,10 +157,6 @@ Ptr<FaceRecognizer> creerModele()
     Mat matDst7=src7;
     Mat matDst8=src8;
 
-    // holds images and labels
-    vector<Mat> images;
-    vector<int> labels;
-
     // images for first person
     //images.push_back(imread("resize/picture1.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(0);
     images.push_back(matDst0); labels.push_back(0);
@@ -147,11 +169,10 @@ Ptr<FaceRecognizer> creerModele()
     // images for third person
     images.push_back(matDst6); labels.push_back(2);
     images.push_back(matDst7); labels.push_back(2);
-    images.push_back(matDst8); labels.push_back(2);
+    images.push_back(matDst8); labels.push_back(2);*/
 
     Ptr<FaceRecognizer> model =  createFisherFaceRecognizer();
     model->train(images, labels);
-
     //cerr<<"modele cree"<<endl;
     return model;
 }
@@ -214,23 +235,12 @@ void recognition(IplImage* frame, CvHaarClassifierCascade* cascade)
             //Creation de la matrice de l'image de visage test pour comparaison avec le modele
             Mat matTest=dstTestGray;
 
+            double confidence=-1.0;
+            int predicted=-1;
             // And get a prediction from the cv::FaceRecognizer:
-            int predicted = model->predict(matTest);
+            model->predict(matTest, predicted, confidence);
 
-            cout<<predicted<<endl;
-
-            if (predicted==0){
-                cout<<"camille"<<endl;
-            }
-            else if (predicted==1){
-                cout<<"Marie"<<endl;
-            }
-             else if (predicted==2){
-                cout<<"Christopher"<<endl;
-            }
-            else{
-                cout<<"Personne inconnue"<<endl;
-            }
+            cout<< predicted << " " << collection.getPersonne(predicted).getFirstName()<< "/ confiance : "<<confidence << endl;
 
         }
 
@@ -264,14 +274,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 //Main
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-    // ----------------------------------------------------------- //
-    // -------------------------- Parse -------------------------- //
-    // ----------------------------------------------------------- //
-    const char* xmlFile = "data/Personnes.xml";
-    Collection collection(xmlFile);
 
-    collection.addPersonne("toto","tata");
-    collection.addImage(6,"test");
     cout<<collection.to_string();
 
 
