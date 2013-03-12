@@ -17,9 +17,9 @@ class Parser
         void exportFile() const;
 
         //Fonctions de modif des données
-        void addPersonne(const string& firstName,const string& lastName,
+        bool addPersonne(const string& firstName,const string& lastName,
                  int id);
-        void addImage(int personneId,const string& chemin,
+       void addImage(int personneId,const string& chemin,
                           const string& date);
     protected:
     private:

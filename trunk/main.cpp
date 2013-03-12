@@ -270,6 +270,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     const char* xmlFile = "data/Personnes.xml";
     Collection collection(xmlFile);
 
+    //collection.addPersonne("toto","tata");
+    //collection.addImage(6,"test");
+    //cout<<collection.to_string();
+
 
     WNDCLASSEX wc;
     HWND hwnd;
