@@ -20,6 +20,7 @@ const char* xmlFile = "data/Personnes.xml";
 Collection collection(xmlFile);
 
 
+
 //A MODIFIER : faire enregistrement dans base de données
 void saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame)
 {
@@ -127,49 +128,6 @@ Ptr<FaceRecognizer> creerModele()
             images.push_back(matDst); labels.push_back(personne.getId());
         }
     }
-
-
-    //cerr<<"creation du modele"<<endl;
-    //A MODIFIER => chargement depuis base de données
-    //Chargement des images depuis le dossier imgResizedGray
-    /*IplImage* src0 = cvLoadImage( "imgResizedGray/picture0.jpg" );
-    IplImage* src1 = cvLoadImage( "imgResizedGray/picture1.jpg" );
-    IplImage* src2 = cvLoadImage( "imgResizedGray/picture2.jpg" );
-
-    IplImage* src3 = cvLoadImage( "imgResizedGray/picture3.jpg" );
-    IplImage* src4 = cvLoadImage( "imgResizedGray/picture4.jpg" );
-    IplImage* src5 = cvLoadImage( "imgResizedGray/picture5.jpg" );
-
-    IplImage* src6 = cvLoadImage( "imgResizedGray/picture6.jpg" );
-    IplImage* src7 = cvLoadImage( "imgResizedGray/picture7.jpg" );
-    IplImage* src8 = cvLoadImage( "imgResizedGray/picture8.jpg" );
-
-    //Transformation en matrices
-    Mat matDst0=src0;
-    Mat matDst1=src1;
-    Mat matDst2=src2;
-
-    Mat matDst3=src3;
-    Mat matDst4=src4;
-    Mat matDst5=src5;
-
-    Mat matDst6=src6;
-    Mat matDst7=src7;
-    Mat matDst8=src8;
-
-    // images for first person
-    //images.push_back(imread("resize/picture1.jpg", CV_LOAD_IMAGE_GRAYSCALE)); labels.push_back(0);
-    images.push_back(matDst0); labels.push_back(0);
-    images.push_back(matDst1); labels.push_back(0);
-    images.push_back(matDst2); labels.push_back(0);
-    // images for second person
-    images.push_back(matDst3); labels.push_back(1);
-    images.push_back(matDst4); labels.push_back(1);
-    images.push_back(matDst5); labels.push_back(1);
-    // images for third person
-    images.push_back(matDst6); labels.push_back(2);
-    images.push_back(matDst7); labels.push_back(2);
-    images.push_back(matDst8); labels.push_back(2);*/
 
     Ptr<FaceRecognizer> model =  createFisherFaceRecognizer();
     model->train(images, labels);
