@@ -14,7 +14,7 @@ using namespace cv;
 const char g_szClassName[] = "mainWindowClass";
 
 //mode = 0 : training, mode = 1 : recognition
-const int mode = 1;
+const int mode = 0;
 
 const char* xmlFile = "data/Personnes.xml";
 Collection collection(xmlFile);
@@ -22,7 +22,7 @@ Collection collection(xmlFile);
 
 
 //A MODIFIER : faire enregistrement dans base de données
-void saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame)
+String saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame, int idPersonne)
 {
     //cerr<<"dans saveTrainImg"<<endl;
 
@@ -30,10 +30,13 @@ void saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame)
     subImg = cvCreateImage(cvGetSize(frame), frame->depth, frame->nChannels);
     cvCopy(frame, subImg, NULL);
     string Result;
-    char* str_Result[100];
+    //char* str_Result[100];
+    //char* str_IdPersonne[100];
     ostringstream convert;
+    ostringstream convertIdPersonne;
     convert << nbFrame;
-    Result = "imgResizedGray\\picture"+convert.str()+".jpg";
+    convertIdPersonne <<idPersonne;
+    Result = "imgResizedGray\\picture"+convertIdPersonne.str()+""+convert.str()+".jpg";
 
 
     IplImage *dst = cvCreateImage(cvSize(400, 400),subImg->depth,3);
@@ -47,18 +50,26 @@ void saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame)
 
     //save image
     cvSaveImage(Result.c_str(), dstGray);
+    return Result;
+
 }
 
-void training(IplImage* frame, CvHaarClassifierCascade* cascade)
+void training(IplImage* frame, CvHaarClassifierCascade* cascade, String nom, String prenom)
 {
     //cerr<<"dans training"<<endl;
 
     char s[] = "picture.jpg";
     int nbFrame=0;
+    int idNewPersonne=0;
+    String Result="";
     CvCapture* capture;
     IplImage *subImg;
     CvSeq *faceRectSeq;
     CvMemStorage *storage = cvCreateMemStorage(0);
+
+    //Mise à jour du fichier XML
+    idNewPersonne=collection.addPersonne(nom,prenom);
+
     //Read the video stream
     //capture = cvCaptureFromAVI("Test.avi");
 
@@ -87,13 +98,16 @@ void training(IplImage* frame, CvHaarClassifierCascade* cascade)
             cvCopy(frame, subImg, NULL);
 
             //On enregistre l'image du visage
-            saveTrainImg(frame, subImg, nbFrame);
-
+            Result=saveTrainImg(frame, subImg, nbFrame, idNewPersonne);
+            if(i<10){
+                collection.addImage(idNewPersonne,Result);
+            }
             //Affiche l'image dans le rectangle et l'image dans son intégralité
             cvShowImage("Visage", subImg);
             cvResetImageROI(frame);
             cvShowImage("Sample Program", frame);
         }
+
 
         int c = cvWaitKey(10);
         if( (char)c == 27 )
@@ -276,6 +290,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         char Filexml[]="haarcascade_frontalface_alt.xml";
         CvHaarClassifierCascade* cascade = 0;
         IplImage* frame = 0;
+        String nom="toto";
+        String prenom="titi";
 
 
         struct stat buf;
@@ -295,7 +311,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         {
             //cerr<<"mode TRAIN"<<endl;
 
-            training(frame, cascade);
+            training(frame, cascade, nom, prenom);
         }
         //MODE RECOGNITION : fabriquer le modele et reconnaissance
         else if (::mode == 1)
