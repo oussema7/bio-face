@@ -1,0 +1,109 @@
+# depslib dependency file v1.0
+1363706801 source:c:\users\el_bla\ricm5\biometrie\bio-face5\main.cpp
+	<QtWidgets/QApplication>
+	"include/interface.h"
+
+1363706946 c:\users\el_bla\ricm5\biometrie\bio-face5\include\interface.h
+	<QtWidgets/QWidget>
+	<QtWidgets/QPushButton>
+	<QtWidgets/QHBoxLayout>
+	<QtWidgets/QVBoxLayout>
+	"Application.h"
+	<QtWidgets/QLabel>
+	<QtGui/QPixmap>
+
+1363706932 c:\users\el_bla\ricm5\biometrie\bio-face5\include\application.h
+	<iostream>
+	"opencv2/highgui/highgui.hpp"
+	<string.h>
+	"opencv2/opencv.hpp"
+	<stdio.h>
+	<sys/stat.h>
+	"Collection.h"
+	<QtGui/QImage>
+	<QtWidgets/QLabel>
+	<QtGui/QPixmap>
+
+1363705688 c:\users\el_bla\ricm5\biometrie\bio-face5\include\collection.h
+	<vector>
+	"Personne.h"
+	"Parser.h"
+
+1363705688 c:\users\el_bla\ricm5\biometrie\bio-face5\include\personne.h
+	<iostream>
+	<string>
+	<vector>
+	"Image.h"
+
+1363705689 c:\users\el_bla\ricm5\biometrie\bio-face5\include\image.h
+	<string>
+
+1363705688 c:\users\el_bla\ricm5\biometrie\bio-face5\include\parser.h
+	<vector>
+	"tinyxml.h"
+	"tinystr.h"
+	"Personne.h"
+
+1363705689 c:\users\el_bla\ricm5\biometrie\bio-face5\include\tinyxml.h
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<string>
+	<iostream>
+	<sstream>
+	"tinystr.h"
+
+1363705688 c:\users\el_bla\ricm5\biometrie\bio-face5\include\tinystr.h
+	<assert.h>
+	<string.h>
+
+1363705703 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\application.cpp
+	"Application.h"
+
+1363705703 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\collection.cpp
+	"Collection.h"
+	<time.h>
+	<sstream>
+
+1363705703 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\image.cpp
+	"Image.h"
+
+1363705703 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\interface.cpp
+	"interface.h"
+
+1363707100 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\moc_interface.cpp
+	"../include/interface.h"
+	<QtCore/qbytearray.h>
+	<QtCore/qmetatype.h>
+
+1363705703 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\parser.cpp
+	"Parser.h"
+	<iostream>
+	<string>
+	<sstream>
+	<cstdlib>
+
+1363705703 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\personne.cpp
+	"Personne.h"
+	<sstream>
+
+1363705703 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\tinystr.cpp
+	"tinystr.h"
+
+1363705703 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\tinyxml.cpp
+	<ctype.h>
+	<sstream>
+	<iostream>
+	"tinyxml.h"
+
+1363705703 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\tinyxmlerror.cpp
+	"tinyxml.h"
+
+1363705703 source:c:\users\el_bla\ricm5\biometrie\bio-face5\src\tinyxmlparser.cpp
+	<ctype.h>
+	<stddef.h>
+	"tinyxml.h"
+	<windows.h>
+
