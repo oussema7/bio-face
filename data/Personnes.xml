@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ListePersonnes>
+    <Personne>
+        <Nom>Eloy</Nom>
+        <Prenom>Fabien</Prenom>
+        <Id>0</Id>
+        <Image>
+            <Chemin>imgResizedGray/picture57.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture60.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture63.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture67.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture68.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture71.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture72.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture79.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture81.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture98.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+    </Personne>
+    <Personne>
+        <Nom>Oswald</Nom>
+        <Prenom>Camille</Prenom>
+        <Id>1</Id>
+        <Image>
+            <Chemin>imgResizedGray/picture4.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture5.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture9.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture17.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture20.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture21.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture23.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture24.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture28.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture25.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+    </Personne>
+    <Personne>
+        <Nom>Chevallier</Nom>
+        <Prenom>Marie</Prenom>
+        <Id>2</Id>
+        <Image>
+            <Chemin>imgResizedGray/picture116.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture120.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture125.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture126.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture127.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture140.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture141.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture145.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture138.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture134.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+    </Personne>
+    <Personne>
+        <Nom>Vigier</Nom>
+        <Prenom>Sylvain</Prenom>
+        <Id>3</Id>
+        <Image>
+            <Chemin>imgResizedGray/picture183.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture185.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture189.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture190.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture191.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture193.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture195.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture196.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture207.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture206.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+    </Personne>
+    <Personne>
+        <Nom>Bish</Nom>
+        <Prenom>Simon</Prenom>
+        <Id>4</Id>
+        <Image>
+            <Chemin>imgResizedGray/picture248.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture251.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture268.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture269.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture271.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture273.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture274.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture276.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture282.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture283.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+    </Personne>
+    <Personne>
+        <Nom>Wirth</Nom>
+        <Prenom>Clement</Prenom>
+        <Id>5</Id>
+        <Image>
+            <Chemin>imgResizedGray/picture336.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture338.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture342.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture343.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture346.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture348.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture350.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture351.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture352.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+        <Image>
+            <Chemin>imgResizedGray/picture354.jpg</Chemin>
+            <Date>05/03/2013 15:17:13</Date>
+        </Image>
+    </Personne>
+</ListePersonnes>
