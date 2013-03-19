@@ -5,6 +5,7 @@ Interface::Interface() : QWidget()
 {
     app = new Application;
     setFixedSize(800,600);
+    conteneurImage = new QLabel;
     layout = new QVBoxLayout;
     setLayout(layout);
     creerReco();
@@ -64,7 +65,16 @@ void Interface::afficherTrain()
 
 /** Creer la page de la reconaissance **/
 void Interface::creerReco(){
-    reco = new QPushButton("coucou");
+    reco = new QWidget;
+    QVBoxLayout* rl = new QVBoxLayout();
+    QLabel *entete = new QLabel("Veuillez vous placer devant la camera");
+    entete->setFixedHeight(10);
+    QImage *image = new QImage;
+    image->load("./img/picture0.jpg");
+    conteneurImage->setPixmap(QPixmap::fromImage(*image));
+    rl->addWidget(entete);
+    rl->addWidget(conteneurImage);
+    reco->setLayout(rl);
     layout->addWidget(reco);
 }
 
@@ -73,70 +83,16 @@ void Interface::afficherReco()
 {
     cleanLayout();
     reco->setVisible(true);
+    app->recognition(conteneurImage);
 }
 
 /** Creer la page du formulaire (pour l'apprentissage) **/
-void Interface::creerFormulaire(){
+void Interface::creerFormulaire()
+{
 }
 
 /** Affichel la page du formulaire (pour l'apprentissage) **/
 void Interface::afficherFormulaire()
 {
 
-}
-
-
-/** Fonction convertissant une image QT en image OpenCV **/
-IplImage* Interface::QImage2IplImage(QImage *qimg)
-{
-
-    IplImage *imgHeader = cvCreateImageHeader( cvSize(qimg->width(), qimg->height()), IPL_DEPTH_8U, 4);
-    imgHeader->imageData = (char*) qimg->bits();
-
-    uchar* newdata = (uchar*) malloc(sizeof(uchar) * qimg->byteCount());
-    memcpy(newdata, qimg->bits(), qimg->byteCount());
-    imgHeader->imageData = (char*) newdata;
-    //cvClo
-    return imgHeader;
-}
-
-/** Fonction convertissant une image openCV en image QT **/
-QImage*  Interface::IplImage2QImage(IplImage *iplImg)
-{
-    int h = iplImg->height;
-    int w = iplImg->width;
-    int channels = iplImg->nChannels;
-    QImage *qimg = new QImage(w, h, QImage::Format_ARGB32);
-    char *data = iplImg->imageData;
-
-    for (int y = 0; y < h; y++, data += iplImg->widthStep)
-    {
-        for (int x = 0; x < w; x++)
-        {
-            char r, g, b, a = 0;
-            if (channels == 1)
-            {
-                r = data[x * channels];
-                g = data[x * channels];
-                b = data[x * channels];
-            }
-            else if (channels == 3 || channels == 4)
-            {
-                r = data[x * channels + 2];
-                g = data[x * channels + 1];
-                b = data[x * channels];
-            }
-
-            if (channels == 4)
-            {
-                a = data[x * channels + 3];
-                qimg->setPixel(x, y, qRgba(r, g, b, a));
-            }
-            else
-            {
-                qimg->setPixel(x, y, qRgb(r, g, b));
-            }
-        }
-    }
-    return qimg;
 }

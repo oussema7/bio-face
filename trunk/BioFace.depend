@@ -1026,14 +1026,17 @@
 	<QApplication>
 	"include/interface.h"
 
-1363686776 c:\users\maxence\documents\bio-face\include\interface.h
+1363696934 c:\users\maxence\documents\bio-face\include\interface.h
 	<QWidget>
 	<QPushButton>
 	<QHBoxLayout>
 	<QVBoxLayout>
 	"Application.h"
+	<QLabel>
+	<QPixmap>
+	<QTextLine>
 
-1363683076 c:\users\maxence\documents\bio-face\include\application.h
+1363696578 c:\users\maxence\documents\bio-face\include\application.h
 	<iostream>
 	"opencv2/highgui/highgui.hpp"
 	<string.h>
@@ -1041,6 +1044,9 @@
 	<stdio.h>
 	<sys/stat.h>
 	"Collection.h"
+	<QImage>
+	<QLabel>
+	<QPixmap>
 
 1363684265 c:\users\maxence\documents\bio-face\include\collection.h
 	<vector>
@@ -1077,7 +1083,7 @@
 	<assert.h>
 	<string.h>
 
-1363684402 source:c:\users\maxence\documents\bio-face\src\application.cpp
+1363696706 source:c:\users\maxence\documents\bio-face\src\application.cpp
 	"Application.h"
 
 1363684259 source:c:\users\maxence\documents\bio-face\src\collection.cpp
@@ -1088,7 +1094,7 @@
 1363267191 source:c:\users\maxence\documents\bio-face\src\image.cpp
 	"Image.h"
 
-1363687435 source:c:\users\maxence\documents\bio-face\src\interface.cpp
+1363697194 source:c:\users\maxence\documents\bio-face\src\interface.cpp
 	"interface.h"
 
 1363271385 source:c:\users\maxence\documents\bio-face\src\moc_interface.cpp
@@ -1122,4 +1128,111 @@
 	<stddef.h>
 	"tinyxml.h"
 	<windows.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qlabel
+	"qlabel.h"
+
+1353665394 c:\qt\4.8.4\include\qtgui\qlabel.h
+	"../../src/gui/widgets/qlabel.h"
+
+1353665394 c:\qt\4.8.4\src\gui\widgets\qlabel.h
+	<QtGui/qframe.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qframe.h
+	"../../src/gui/widgets/qframe.h"
+
+1353665394 c:\qt\4.8.4\src\gui\widgets\qframe.h
+	<QtGui/qwidget.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qpixmap
+	"qpixmap.h"
+
+1353665394 c:\qt\4.8.4\include\qtgui\qtextline
+	"qtextlayout.h"
+
+1353665394 c:\qt\4.8.4\include\qtgui\qtextlayout.h
+	"../../src/gui/text/qtextlayout.h"
+
+1353665394 c:\qt\4.8.4\src\gui\text\qtextlayout.h
+	<QtCore/qstring.h>
+	<QtCore/qnamespace.h>
+	<QtCore/qrect.h>
+	<QtCore/qvector.h>
+	<QtGui/qcolor.h>
+	<QtCore/qobject.h>
+	<QtGui/qevent.h>
+	<QtGui/qtextformat.h>
+	<QtGui/qglyphrun.h>
+	<QtGui/qtextcursor.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qtextformat.h
+	"../../src/gui/text/qtextformat.h"
+
+1353665394 c:\qt\4.8.4\src\gui\text\qtextformat.h
+	<QtGui/qcolor.h>
+	<QtGui/qfont.h>
+	<QtCore/qshareddata.h>
+	<QtCore/qvector.h>
+	<QtCore/qvariant.h>
+	<QtGui/qpen.h>
+	<QtGui/qbrush.h>
+	<QtGui/qtextoption.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qpen.h
+	"../../src/gui/painting/qpen.h"
+
+1353665394 c:\qt\4.8.4\src\gui\painting\qpen.h
+	<QtGui/qcolor.h>
+	<QtGui/qbrush.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qtextoption.h
+	"../../src/gui/text/qtextoption.h"
+
+1353665394 c:\qt\4.8.4\src\gui\text\qtextoption.h
+	<QtCore/qnamespace.h>
+	<QtCore/qchar.h>
+	<QtCore/qmetatype.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qglyphrun.h
+	"../../src/gui/text/qglyphrun.h"
+
+1353665394 c:\qt\4.8.4\src\gui\text\qglyphrun.h
+	<QtCore/qsharedpointer.h>
+	<QtCore/qvector.h>
+	<QtCore/qpoint.h>
+	<QtGui/qrawfont.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qrawfont.h
+	"../../src/gui/text/qrawfont.h"
+
+1353665394 c:\qt\4.8.4\src\gui\text\qrawfont.h
+	<QtCore/qstring.h>
+	<QtCore/qiodevice.h>
+	<QtCore/qglobal.h>
+	<QtCore/qobject.h>
+	<QtCore/qpoint.h>
+	<QtGui/qfont.h>
+	<QtGui/qtransform.h>
+	<QtGui/qfontdatabase.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qfontdatabase.h
+	"../../src/gui/text/qfontdatabase.h"
+
+1353665394 c:\qt\4.8.4\src\gui\text\qfontdatabase.h
+	<QtGui/qwindowdefs.h>
+	<QtCore/qstring.h>
+	<QtGui/qfont.h>
+	<QtCore/qstringlist.h>
+	<QtCore/qlist.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qtextcursor.h
+	"../../src/gui/text/qtextcursor.h"
+
+1353665394 c:\qt\4.8.4\src\gui\text\qtextcursor.h
+	<QtCore/qstring.h>
+	<QtCore/qshareddata.h>
+	<QtGui/qtextformat.h>
+
+1353665394 c:\qt\4.8.4\include\qtgui\qimage
+	"qimage.h"
 

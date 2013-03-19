@@ -24,7 +24,8 @@ Application::Application()
 }
 
 /** Destructeur **/
-Application::~Application(){
+Application::~Application()
+{
     cvReleaseImage(&frame);
 }
 
@@ -61,7 +62,7 @@ String Application::saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame,
 }
 
 /** Effectue l'apprentissage **/
-void Application::training(IplImage* frame, CvHaarClassifierCascade* cascade, String nom, String prenom)
+void Application::training(String nom, String prenom)
 {
     //cerr<<"dans training"<<endl;
 
@@ -106,7 +107,8 @@ void Application::training(IplImage* frame, CvHaarClassifierCascade* cascade, St
 
             //On enregistre l'image du visage
             Result=saveTrainImg(frame, subImg, nbFrame, idNewPersonne);
-            if(i<10){
+            if(i<10)
+            {
                 collection->addImage(idNewPersonne,Result);
             }
             //Affiche l'image dans le rectangle et l'image dans son intégralité
@@ -133,21 +135,24 @@ Ptr<FaceRecognizer> Application::creerModele()
     vector<Mat> images;
     vector<int> labels;
 
-      // ----------------------------------------------------------- //
+    // ----------------------------------------------------------- //
     // -------------------------- Parse -------------------------- //
     // ----------------------------------------------------------- //
 
-   vector<Personne> personnes = collection->getPersonnes();
+    vector<Personne> personnes = collection->getPersonnes();
     vector<Image> imageRefs;
 
     Personne personne;
-    for(int i=0;i<(int)personnes.size();i++){
+    for(int i=0; i<(int)personnes.size(); i++)
+    {
         personne = personnes[i];
         imageRefs = personne.getImageReferences();
-        for(int j=0;j<(int)imageRefs.size();j++){
+        for(int j=0; j<(int)imageRefs.size(); j++)
+        {
             IplImage* src = cvLoadImage(imageRefs[j].getChemin().c_str(), CV_LOAD_IMAGE_GRAYSCALE);
             Mat matDst=src;
-            images.push_back(matDst); labels.push_back(personne.getId());
+            images.push_back(matDst);
+            labels.push_back(personne.getId());
         }
     }
 
@@ -158,7 +163,7 @@ Ptr<FaceRecognizer> Application::creerModele()
 }
 
 /** Reconnaissance de visages **/
-void Application::recognition(IplImage* frame, CvHaarClassifierCascade* cascade)
+void Application::recognition(QLabel* conteneurImage)
 {
     //cerr<<"dans recognition"<<endl;
 
@@ -201,10 +206,11 @@ void Application::recognition(IplImage* frame, CvHaarClassifierCascade* cascade)
             cvCopy(frame, subImg, NULL);
 
             //Affiche l'image dans le rectangle et l'image dans son intégralité
-            cvShowImage("Visage", subImg);
+            //cvShowImage("Visage", subImg);
             cvResetImageROI(frame);
-            cvShowImage("Sample Program", frame);
-
+            //cvShowImage("Sample Program", frame);
+            QImage* image = IplImage2QImage(frame);
+            conteneurImage->setPixmap(QPixmap::fromImage(*image));
 
             //Formatage de l'image du visage
             IplImage *dstTest = cvCreateImage(cvSize(400 , 400),subImg->depth,3);
@@ -233,3 +239,59 @@ void Application::recognition(IplImage* frame, CvHaarClassifierCascade* cascade)
         nbFrame++;
     }
 }
+
+/** Fonction convertissant une image QT en image OpenCV **/
+IplImage* Application::QImage2IplImage(QImage *qimg)
+{
+
+    IplImage *imgHeader = cvCreateImageHeader( cvSize(qimg->width(), qimg->height()), IPL_DEPTH_8U, 4);
+    imgHeader->imageData = (char*) qimg->bits();
+
+    uchar* newdata = (uchar*) malloc(sizeof(uchar) * qimg->byteCount());
+    memcpy(newdata, qimg->bits(), qimg->byteCount());
+    imgHeader->imageData = (char*) newdata;
+    //cvClo
+    return imgHeader;
+}
+
+/** Fonction convertissant une image openCV en image QT **/
+QImage*  Application::IplImage2QImage(IplImage *iplImg)
+{
+    int h = iplImg->height;
+    int w = iplImg->width;
+    int channels = iplImg->nChannels;
+    QImage *qimg = new QImage(w, h, QImage::Format_ARGB32);
+    char *data = iplImg->imageData;
+
+    for (int y = 0; y < h; y++, data += iplImg->widthStep)
+    {
+        for (int x = 0; x < w; x++)
+        {
+            char r, g, b, a = 0;
+            if (channels == 1)
+            {
+                r = data[x * channels];
+                g = data[x * channels];
+                b = data[x * channels];
+            }
+            else if (channels == 3 || channels == 4)
+            {
+                r = data[x * channels + 2];
+                g = data[x * channels + 1];
+                b = data[x * channels];
+            }
+
+            if (channels == 4)
+            {
+                a = data[x * channels + 3];
+                qimg->setPixel(x, y, qRgba(r, g, b, a));
+            }
+            else
+            {
+                qimg->setPixel(x, y, qRgb(r, g, b));
+            }
+        }
+    }
+    return qimg;
+}
+

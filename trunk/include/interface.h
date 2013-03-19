@@ -6,6 +6,9 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include "Application.h"
+#include <QLabel>
+#include <QPixmap>
+#include <QTextLine>
 
 class Interface : public QWidget
 {
@@ -23,6 +26,7 @@ private:
     QWidget* reco;
     QWidget* train;
     QWidget* formulaire;
+    QLabel *conteneurImage;
     void cleanLayout();
     void creerPagePrincipale();
     void afficherPagePrincipale();
@@ -32,8 +36,6 @@ private:
     void afficherFormulaire();
     void creerReco();
     void afficherReco();
-    IplImage* QImage2IplImage(QImage *qimg);
-    QImage*  IplImage2QImage(IplImage *iplImg);
     Application *app;
 };
 #endif // INTERFACE_H
