@@ -107,3 +107,113 @@
 	"tinyxml.h"
 	<windows.h>
 
+1363781703 source:c:\users\maxence\documents\bio-face\main.cpp
+	<QtWidgets/QApplication>
+	"include/interface.h"
+
+1363794806 c:\users\maxence\documents\bio-face\include\interface.h
+	<QtWidgets/QWidget>
+	<QtWidgets/QPushButton>
+	<QtWidgets/QHBoxLayout>
+	<QtWidgets/QVBoxLayout>
+	"Application.h"
+	<QtWidgets/QLabel>
+	<QtGui/QPixmap>
+	<QtWidgets/QFormLayout>
+	<QtWidgets/QLineEdit>
+
+1363794632 c:\users\maxence\documents\bio-face\include\application.h
+	<iostream>
+	"opencv2/highgui/highgui.hpp"
+	<String>
+	"opencv2/opencv.hpp"
+	<stdio.h>
+	<sys/stat.h>
+	"Collection.h"
+	<QtGui/QImage>
+	<QtWidgets/QLabel>
+	<QtGui/QPixmap>
+
+1363790660 c:\users\maxence\documents\bio-face\include\collection.h
+	<vector>
+	"Personne.h"
+	"Parser.h"
+
+1363708040 c:\users\maxence\documents\bio-face\include\personne.h
+	<iostream>
+	<string>
+	<vector>
+	"Image.h"
+
+1363708041 c:\users\maxence\documents\bio-face\include\image.h
+	<string>
+
+1363708040 c:\users\maxence\documents\bio-face\include\parser.h
+	<vector>
+	"tinyxml.h"
+	"tinystr.h"
+	"Personne.h"
+
+1363708041 c:\users\maxence\documents\bio-face\include\tinyxml.h
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<string>
+	<iostream>
+	<sstream>
+	"tinystr.h"
+
+1363708040 c:\users\maxence\documents\bio-face\include\tinystr.h
+	<assert.h>
+	<string.h>
+
+1363796230 source:c:\users\maxence\documents\bio-face\src\collection.cpp
+	"../include/Collection.h"
+	<time.h>
+	<sstream>
+
+1363781703 source:c:\users\maxence\documents\bio-face\src\image.cpp
+	"../include/Image.h"
+
+1363796250 source:c:\users\maxence\documents\bio-face\src\interface.cpp
+	"../include/interface.h"
+
+1363794281 source:c:\users\maxence\documents\bio-face\src\moc_interface.cpp
+	"../include/interface.h"
+	<QtCore/qbytearray.h>
+	<QtCore/qmetatype.h>
+
+1363781703 source:c:\users\maxence\documents\bio-face\src\parser.cpp
+	"../include/Parser.h"
+	<iostream>
+	<string>
+	<sstream>
+	<cstdlib>
+
+1363781702 source:c:\users\maxence\documents\bio-face\src\personne.cpp
+	"../include/Personne.h"
+	<sstream>
+
+1363781703 source:c:\users\maxence\documents\bio-face\src\tinystr.cpp
+	"../include/tinystr.h"
+
+1363781703 source:c:\users\maxence\documents\bio-face\src\tinyxml.cpp
+	<ctype.h>
+	<sstream>
+	<iostream>
+	"../include/tinyxml.h"
+
+1363781703 source:c:\users\maxence\documents\bio-face\src\tinyxmlerror.cpp
+	"../include/tinyxml.h"
+
+1363781703 source:c:\users\maxence\documents\bio-face\src\tinyxmlparser.cpp
+	<ctype.h>
+	<stddef.h>
+	"../include/tinyxml.h"
+	<windows.h>
+
+1363796289 source:c:\users\maxence\documents\bio-face\src\application.cpp
+	"../include/Application.h"
+

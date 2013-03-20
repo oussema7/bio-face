@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "opencv2/highgui/highgui.hpp"
-#include <string.h>
+#include <String>
 #include "opencv2/opencv.hpp"
 #include <stdio.h>
 #include <sys/stat.h>
@@ -20,9 +20,11 @@ public:
     Application();
     virtual ~Application();
     String saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame, int idPersonne);
-    void training(String nom, String prenom);
+    void training(QLabel* conteneurImage, String nom, String prenom);
     Ptr<FaceRecognizer> creerModele();
-    void recognition(QLabel* conteneurImage);
+    void recognition(QLabel* conteneurImage, QLabel* entete);
+    bool capturing;
+    bool saving;
 protected:
 private:
     Collection *collection;

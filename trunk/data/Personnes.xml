@@ -270,4 +270,14 @@
             <Date>05/03/2013 15:17:13</Date>
         </Image>
     </Personne>
+    <Personne>
+        <Nom>daaqdaqd</Nom>
+        <Prenom>dadaqda</Prenom>
+        <Id>6</Id>
+    </Personne>
+    <Personne>
+        <Nom></Nom>
+        <Prenom></Prenom>
+        <Id>7</Id>
+    </Personne>
 </ListePersonnes>
