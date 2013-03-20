@@ -8,6 +8,8 @@
 #include "Application.h"
 #include <QtWidgets/QLabel>
 #include <QtGui/QPixmap>
+#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QLineEdit>
 
 class Interface : public QWidget
 {
@@ -18,6 +20,9 @@ public:
 
 public slots:
     void clicSurReco();
+    void clicSurMenu();
+    void clicSurTrain();
+    void clicSurSuivant();
 
 private:
     QVBoxLayout* layout;
@@ -26,6 +31,10 @@ private:
     QWidget* train;
     QWidget* formulaire;
     QLabel *conteneurImage;
+    QLabel *conteneurImageTrain;
+    QLabel *entete;
+    QLineEdit *lineEdit_nom;
+    QLineEdit *lineEdit_prenom;
     void cleanLayout();
     void creerPagePrincipale();
     void afficherPagePrincipale();

@@ -5,13 +5,14 @@ using namespace cv;
 /** Constructeur **/
 Application::Application()
 {
+    capturing = false;
+
     const char* XML_FILE = "data/Personnes.xml";
     collection = new Collection(XML_FILE);
     char Filexml[]="haarcascade_frontalface_alt.xml";
-    cascade = 0;
-    frame = 0;
     struct stat buf;
     int statResult=stat(Filexml,&buf);
+    cvNamedWindow("zut", CV_WINDOW_AUTOSIZE);
     if (statResult ||buf.st_ino<0)
     {
         cerr << "xml non trouvé" << endl;
@@ -46,7 +47,6 @@ String Application::saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame,
     convertIdPersonne <<idPersonne;
     Result = "imgResizedGray\\picture"+convertIdPersonne.str()+""+convert.str()+".jpg";
 
-
     IplImage *dst = cvCreateImage(cvSize(400, 400),subImg->depth,3);
     IplImage *dstGray = cvCreateImage(cvSize(400, 400),dst->depth,1);
 
@@ -62,11 +62,9 @@ String Application::saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame,
 }
 
 /** Effectue l'apprentissage **/
-void Application::training(String nom, String prenom)
+void Application::training(QLabel* conteneurImage, String nom, String prenom)
 {
     //cerr<<"dans training"<<endl;
-
-    char s[] = "picture.jpg";
     int nbFrame=0;
     int idNewPersonne=0;
     String Result="";
@@ -80,14 +78,14 @@ void Application::training(String nom, String prenom)
 
     //Read the video stream
     //capture = cvCaptureFromAVI("Test.avi");
-
-    while (true)
+    capturing = true;
+    while (capturing)
     {
         capture = cvCaptureFromCAM(1);
         frame = cvQueryFrame(capture);
         // create a window to display detected faces
-        cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
-        cvNamedWindow("Visage", CV_WINDOW_AUTOSIZE);
+        //cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
+        //cvNamedWindow("Visage", CV_WINDOW_AUTOSIZE);
         // display face detections
         faceRectSeq = cvHaarDetectObjects(frame,cascade,storage,1.2, 3,CV_HAAR_DO_CANNY_PRUNING,cvSize(50,50));
         CvRect *r;
@@ -103,26 +101,30 @@ void Application::training(String nom, String prenom)
             //Récupération de l'image à l'interieur du rectangle r
             cvSetImageROI(frame, *r);
             subImg = cvCreateImage(cvGetSize(frame), frame->depth, frame->nChannels);
-            cvCopy(frame, subImg, NULL);
+            //cvCopy(frame, subImg, NULL);
 
             //On enregistre l'image du visage
-            Result=saveTrainImg(frame, subImg, nbFrame, idNewPersonne);
+
             if(i<10)
             {
-                collection->addImage(idNewPersonne,Result);
+                //Result=saveTrainImg(frame, subImg, nbFrame, idNewPersonne);
+                //collection->addImage(idNewPersonne,Result);
             }
             //Affiche l'image dans le rectangle et l'image dans son intégralité
-            cvShowImage("Visage", subImg);
+            //cvShowImage("Visage", subImg);
             cvResetImageROI(frame);
-            cvShowImage("Sample Program", frame);
+            //cvShowImage("Sample Program", frame);
+            QImage* image = IplImage2QImage(frame);
+            conteneurImage->setPixmap(QPixmap::fromImage(*image));
+            delete image;
         }
 
 
         int c = cvWaitKey(10);
         if( (char)c == 27 )
         {
-            cvSaveImage(s, frame);
-            exit(0);
+            //cvSaveImage(s, frame);
+            //exit(0);
         }
         nbFrame++;
     }
@@ -163,30 +165,25 @@ Ptr<FaceRecognizer> Application::creerModele()
 }
 
 /** Reconnaissance de visages **/
-void Application::recognition(QLabel* conteneurImage)
+void Application::recognition(QLabel* conteneurImage, QLabel* entete)
 {
     //cerr<<"dans recognition"<<endl;
-
-    char s[] = "picture.jpg";
+    capturing = true;
     int nbFrame=0;
     CvCapture* capture;
     IplImage *subImg;
     CvSeq *faceRectSeq;
     CvMemStorage *storage = cvCreateMemStorage(0);
     Ptr<FaceRecognizer> model;
-    //Read the video stream
-    //capture = cvCaptureFromAVI("Test.avi");
-
     //Creation du modele
     model = creerModele();
-
-    while (true)
+    capture = cvCaptureFromCAM(0);
+    while (capturing)
     {
-        capture = cvCaptureFromCAM(0);
         frame = cvQueryFrame(capture);
         // create a window to display detected faces
-        cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
-        cvNamedWindow("Visage", CV_WINDOW_AUTOSIZE);
+        //cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
+
         // display face detections
         faceRectSeq = cvHaarDetectObjects(frame,cascade,storage,1.2, 3,CV_HAAR_DO_CANNY_PRUNING,cvSize(50,50));
         CvRect *r;
@@ -203,7 +200,7 @@ void Application::recognition(QLabel* conteneurImage)
             //Récupération de l'image à l'interieur du rectangle r
             cvSetImageROI(frame, *r);
             subImg = cvCreateImage(cvGetSize(frame), frame->depth, frame->nChannels);
-            cvCopy(frame, subImg, NULL);
+            //cvCopy(frame, subImg, NULL);
 
             //Affiche l'image dans le rectangle et l'image dans son intégralité
             //cvShowImage("Visage", subImg);
@@ -211,6 +208,7 @@ void Application::recognition(QLabel* conteneurImage)
             //cvShowImage("Sample Program", frame);
             QImage* image = IplImage2QImage(frame);
             conteneurImage->setPixmap(QPixmap::fromImage(*image));
+            delete image;
 
             //Formatage de l'image du visage
             IplImage *dstTest = cvCreateImage(cvSize(400 , 400),subImg->depth,3);
@@ -226,15 +224,16 @@ void Application::recognition(QLabel* conteneurImage)
             // And get a prediction from the cv::FaceRecognizer:
             model->predict(matTest, predicted, confidence);
 
-            cout<< predicted << " " << collection->getPersonne(predicted).getFirstName()<< "/ confiance : "<<confidence << endl;
-
+            //std::ostringstream  oss;
+            //oss << "Vous etes : " << collection->getPersonne(predicted).getFirstName()<< " (confiance : "<<confidence<<")";
+            //entete->setText(oss.str().c_str());
         }
 
         int c = cvWaitKey(10);
         if( (char)c == 27 )
         {
-            cvSaveImage(s, frame);
-            exit(0);
+            //cvSaveImage(s, frame);
+            //exit(0);
         }
         nbFrame++;
     }
