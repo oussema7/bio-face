@@ -23,6 +23,7 @@ public slots:
     void clicSurMenu();
     void clicSurTrain();
     void clicSurSuivant();
+    void clicCapture();
 
 private:
     QVBoxLayout* layout;
@@ -33,6 +34,8 @@ private:
     QLabel *conteneurImage;
     QLabel *conteneurImageTrain;
     QLabel *entete;
+    QLabel * enteteTrain;
+    QPushButton* capture;
     QLineEdit *lineEdit_nom;
     QLineEdit *lineEdit_prenom;
     void cleanLayout();
