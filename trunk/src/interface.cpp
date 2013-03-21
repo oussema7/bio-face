@@ -91,7 +91,6 @@ void Interface::creerTrain(){
     QPushButton* menu = new QPushButton("Retour au menu");
     menu->setFont(QFont("Comic sans MS",15));
     QObject::connect(menu, SIGNAL(clicked()), this, SLOT(clicSurMenu()));
-    enteteTrain->setText("Appuyez sur le bouton pour vous enregistrer...");
     enteteTrain->setFont(QFont("Comic sans MS",14));
     capture = new QPushButton("Capturer 10 images");
     QObject::connect(capture, SIGNAL(clicked()), this, SLOT(clicCapture()));
@@ -111,7 +110,11 @@ void Interface::afficherTrain()
 {
     cleanLayout();
     train->setVisible(true);
+    enteteTrain->setText("Appuyez sur le bouton pour vous enregistrer...");
+    app->saving = false;
+    capture->setEnabled(true);
     app->training(conteneurImageTrain, lineEdit_nom->text().toStdString(), lineEdit_prenom->text().toStdString(),enteteTrain);
+
 
 }
 
