@@ -45,7 +45,7 @@ String Application::saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame,
     ostringstream convertIdPersonne;
     convert << nbFrame;
     convertIdPersonne <<idPersonne;
-    Result = "imgResizedGray\\picture"+convertIdPersonne.str()+""+convert.str()+".jpg";
+    Result = "imgResizedGray/picture"+convertIdPersonne.str()+""+convert.str()+".jpg";
 
     IplImage *dst = cvCreateImage(cvSize(400, 400),subImg->depth,3);
     IplImage *dstGray = cvCreateImage(cvSize(400, 400),dst->depth,1);
@@ -62,11 +62,12 @@ String Application::saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame,
 }
 
 /** Effectue l'apprentissage **/
-void Application::training(QLabel* conteneurImage, String nom, String prenom)
+void Application::training(QLabel* conteneurImage, String nom, String prenom, QLabel* enTeteTrain)
 {
     //cerr<<"dans training"<<endl;
     int nbFrame=0;
     int idNewPersonne=0;
+    int nbCaptures = 0;
     String Result="";
     CvCapture* capture;
     IplImage *subImg;
@@ -74,14 +75,14 @@ void Application::training(QLabel* conteneurImage, String nom, String prenom)
     CvMemStorage *storage = cvCreateMemStorage(0);
 
     //Mise à jour du fichier XML
-    idNewPersonne=collection->addPersonne(nom,prenom);
+
 
     //Read the video stream
     //capture = cvCaptureFromAVI("Test.avi");
     capturing = true;
     while (capturing)
     {
-        capture = cvCaptureFromCAM(1);
+        capture = cvCaptureFromCAM(0);
         frame = cvQueryFrame(capture);
         // create a window to display detected faces
         //cvNamedWindow("Sample Program", CV_WINDOW_AUTOSIZE);
@@ -105,10 +106,23 @@ void Application::training(QLabel* conteneurImage, String nom, String prenom)
 
             //On enregistre l'image du visage
 
-            if(i<10)
+            if(saving && nbCaptures < 10)
             {
-                //Result=saveTrainImg(frame, subImg, nbFrame, idNewPersonne);
-                //collection->addImage(idNewPersonne,Result);
+                std::ostringstream  oss;
+                oss <<" Capture en cours, il reste " << (10 - nbCaptures) << " photos restantes a capturer. ";
+                enTeteTrain->setText(oss.str().c_str());
+                if (nbCaptures == 0) {
+                    idNewPersonne=collection->addPersonne(nom,prenom);
+
+                }
+                Result=saveTrainImg(frame, subImg, nbFrame, idNewPersonne);
+                collection->addImage(idNewPersonne,Result);
+                nbCaptures++;
+            } else if (saving && nbCaptures >= 10) {
+                capturing = false;
+                std::ostringstream  oss;
+                oss <<"Capture terminee. " << nom << " " << prenom << " est maintenant enregistre.";
+                enTeteTrain->setText(oss.str().c_str());
             }
             //Affiche l'image dans le rectangle et l'image dans son intégralité
             //cvShowImage("Visage", subImg);
@@ -223,7 +237,7 @@ void Application::recognition(QLabel* conteneurImage, QLabel* entete)
             model->predict(matTest, predicted, confidence);
 
             std::ostringstream  oss;
-            oss << "Vous etes : " << collection->getPersonne(predicted).getFirstName()<< " (confiance : "<<confidence<<")";
+            oss << "Vous etes : " << collection->getPersonne(predicted).getFirstName()<< " " << collection->getPersonne(predicted).getLastName() << " (confiance : "<<confidence<<")";
             entete->setText(oss.str().c_str());
         }
 

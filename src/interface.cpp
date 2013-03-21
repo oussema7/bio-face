@@ -8,6 +8,7 @@ Interface::Interface() : QWidget()
     conteneurImage = new QLabel();
     conteneurImageTrain = new QLabel();
     entete = new QLabel;
+    enteteTrain = new QLabel;
     layout = new QVBoxLayout;
     setLayout(layout);
     creerReco();
@@ -76,6 +77,12 @@ void Interface::clicSurSuivant()
     afficherTrain();
 }
 
+void Interface::clicCapture()
+{
+    app->saving = true;
+    capture->setEnabled(false);
+}
+
 /** Creer la page de l'apprentissage **/
 void Interface::creerTrain(){
     train = new QWidget;
@@ -84,12 +91,14 @@ void Interface::creerTrain(){
     QPushButton* menu = new QPushButton("Retour au menu");
     menu->setFont(QFont("Comic sans MS",15));
     QObject::connect(menu, SIGNAL(clicked()), this, SLOT(clicSurMenu()));
-
-    QPushButton* capture = new QPushButton("Capturer 10 images");
-    //QObject::connect(capture, SIGNAL(clicked()), this, SLOT(clicSurCapture()));
+    enteteTrain->setText("Appuyez sur le bouton pour vous enregistrer...");
+    enteteTrain->setFont(QFont("Comic sans MS",14));
+    capture = new QPushButton("Capturer 10 images");
+    QObject::connect(capture, SIGNAL(clicked()), this, SLOT(clicCapture()));
     QImage *image = new QImage;
     image->load("./img/picture0.jpg");
     conteneurImageTrain->setPixmap(QPixmap::fromImage(*image));
+    rl->addWidget(enteteTrain);
     rl->addWidget(capture);
     rl->addWidget(conteneurImageTrain);
     rl->addWidget(menu);
@@ -102,7 +111,7 @@ void Interface::afficherTrain()
 {
     cleanLayout();
     train->setVisible(true);
-    app->training(conteneurImageTrain, lineEdit_nom->text().toStdString(), lineEdit_prenom->text().toStdString());
+    app->training(conteneurImageTrain, lineEdit_nom->text().toStdString(), lineEdit_prenom->text().toStdString(),enteteTrain);
 
 }
 

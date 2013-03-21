@@ -20,7 +20,7 @@ public:
     Application();
     virtual ~Application();
     String saveTrainImg(IplImage* frame, IplImage* subImg, int nbFrame, int idPersonne);
-    void training(QLabel* conteneurImage, String nom, String prenom);
+    void training(QLabel* conteneurImage, String nom, String prenom, QLabel* enTeteTrain);
     Ptr<FaceRecognizer> creerModele();
     void recognition(QLabel* conteneurImage, QLabel* entete);
     bool capturing;
