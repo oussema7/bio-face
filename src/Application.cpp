@@ -206,9 +206,7 @@ void Application::recognition(QLabel* conteneurImage, QLabel* entete)
             //cvShowImage("Visage", subImg);
             cvResetImageROI(frame);
             //cvShowImage("Sample Program", frame);
-            QImage* image = IplImage2QImage(frame);
-            conteneurImage->setPixmap(QPixmap::fromImage(*image));
-            delete image;
+
 
             //Formatage de l'image du visage
             IplImage *dstTest = cvCreateImage(cvSize(400 , 400),subImg->depth,3);
@@ -224,10 +222,14 @@ void Application::recognition(QLabel* conteneurImage, QLabel* entete)
             // And get a prediction from the cv::FaceRecognizer:
             model->predict(matTest, predicted, confidence);
 
-            //std::ostringstream  oss;
-            //oss << "Vous etes : " << collection->getPersonne(predicted).getFirstName()<< " (confiance : "<<confidence<<")";
-            //entete->setText(oss.str().c_str());
+            std::ostringstream  oss;
+            oss << "Vous etes : " << collection->getPersonne(predicted).getFirstName()<< " (confiance : "<<confidence<<")";
+            entete->setText(oss.str().c_str());
         }
+
+        QImage* image = IplImage2QImage(frame);
+            conteneurImage->setPixmap(QPixmap::fromImage(*image));
+            delete image;
 
         int c = cvWaitKey(10);
         if( (char)c == 27 )
