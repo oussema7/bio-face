@@ -214,7 +214,7 @@ void Application::recognition(QLabel* conteneurImage, QLabel* entete)
             //Récupération de l'image à l'interieur du rectangle r
             cvSetImageROI(frame, *r);
             subImg = cvCreateImage(cvGetSize(frame), frame->depth, frame->nChannels);
-            //cvCopy(frame, subImg, NULL);
+            cvCopy(frame, subImg, NULL);
 
             //Affiche l'image dans le rectangle et l'image dans son intégralité
             //cvShowImage("Visage", subImg);
